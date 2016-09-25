@@ -134,14 +134,6 @@ public class WheelOfFortune {
     return letter;
   }
 
-  private static void debugGuessedLetters() {
-    for (Map.Entry<Character, Boolean> entry : guessedLetters.entrySet()) {
-      Character key = entry.getKey();
-      Boolean value = entry.getValue();
-      System.out.println(key + ": " + value);
-    }
-  }
-
   private static void gameMenu() {
     int choice = 0;
     String line = "";
@@ -187,7 +179,6 @@ public class WheelOfFortune {
           char letter = inputLetter();
           System.out.println("Your letter is: " + letter);
           guessedLetters.put(letter, true);
-          debugGuessedLetters();
           break;
         case 8:
           revealLetters = !revealLetters;
