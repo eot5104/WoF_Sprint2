@@ -155,6 +155,7 @@ public class WheelOfFortune {
       System.out.println("                                            ");
 
       System.out.println(maskPuzzle(puzzle));
+      System.out.println();
 
       for (String menuChoice : _menuChoices) {
         if (!menuChoice.equals("")) {
