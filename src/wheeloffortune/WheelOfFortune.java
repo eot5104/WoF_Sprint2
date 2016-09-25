@@ -62,6 +62,12 @@ public class WheelOfFortune {
       "9. Test letter input"
   );
 
+  private static final List<String> _puzzleBank = Arrays.asList(
+      "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+      "PENN STATE ABINGTON",
+      "INFORMATION SCIENCES AND TECHNOLOGY"
+  );
+
   private static final int _quitChoiceNumber = 4;
 
   private static boolean isValidMenuChoice(int choice) {
