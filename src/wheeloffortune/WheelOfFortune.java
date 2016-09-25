@@ -2,7 +2,9 @@ package wheeloffortune;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,7 +73,7 @@ public class WheelOfFortune {
 
   private static final int _puzzlesCount = _puzzles.size();
 
-  private static boolean[] guessedLetters = new boolean[26];
+  private static Map<Character, Boolean> guessedLetters = new HashMap<>();
 
   private static String maskPuzzle(String puzzle) {
     StringBuilder maskedPuzzle = new StringBuilder();
@@ -130,9 +132,10 @@ public class WheelOfFortune {
   }
 
   private static void debugGuessedLetters() {
-    for (int i = 0; i < guessedLetters.length; i++) {
-      System.out.print((char)('A' + i));
-      System.out.println(": " + guessedLetters[i]);
+    for (Map.Entry<Character, Boolean> entry : guessedLetters.entrySet()) {
+      Character key = entry.getKey();
+      Boolean value = entry.getValue();
+      System.out.println(key + ": " + value);
     }
   }
 
@@ -171,7 +174,7 @@ public class WheelOfFortune {
           System.out.println("You landed on: " + chooseRandomWedgeValue());
           char letter = inputLetter();
           System.out.println("Your letter is: " + letter);
-          guessedLetters[letter-'A'] = true;
+          guessedLetters.put(letter, true);
           debugGuessedLetters();
           break;
         case 7:
