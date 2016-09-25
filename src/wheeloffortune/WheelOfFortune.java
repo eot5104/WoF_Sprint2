@@ -57,7 +57,7 @@ public class WheelOfFortune {
       "4. Quit the game",
       "", // 5
       "", // 6
-      "", // 7
+      "7. Test puzzle mask",
       "", // 8
       "9. Test letter input"
   );
@@ -69,6 +69,18 @@ public class WheelOfFortune {
   );
 
   private static final int _puzzlesCount = _puzzles.size();
+
+  private static String maskPuzzle(String puzzle) {
+    StringBuilder maskedPuzzle = new StringBuilder();
+    for (int i = 0; i < puzzle.length(); i++) {
+      char c = puzzle.charAt(i);
+      if (c != ' ') {
+        c = '_';
+      }
+      maskedPuzzle.append(c + " ");
+    }
+    return maskedPuzzle.toString();
+  }
 
   private static int chooseRandomPuzzleIndex() {
     return _random.nextInt(_puzzlesCount);
@@ -149,7 +161,9 @@ public class WheelOfFortune {
           System.out.println("You landed on: " + chooseRandomWedgeValue());
           break;
         case 7:
-          System.out.println("Puzzle: " + chooseRandomPuzzle());
+          String puzzle = chooseRandomPuzzle();
+          System.out.println("Puzzle: " + puzzle);
+          System.out.println("Mask: " + maskPuzzle(puzzle));
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
