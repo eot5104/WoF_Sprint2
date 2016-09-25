@@ -57,16 +57,26 @@ public class WheelOfFortune {
       "4. Quit the game",
       "", // 5
       "", // 6
-      "", // 7
+      "7. Test choose puzzle", // 7
       "", // 8
       "9. Test letter input"
   );
 
-  private static final List<String> _puzzleBank = Arrays.asList(
+  private static final List<String> _puzzles = Arrays.asList(
       "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
       "PENN STATE ABINGTON",
       "INFORMATION SCIENCES AND TECHNOLOGY"
   );
+
+  private static final int _puzzlesCount = _puzzles.size();
+
+  private static int chooseRandomPuzzleIndex() {
+    return _random.nextInt(_puzzlesCount);
+  }
+
+  private static String chooseRandomPuzzle() {
+    return _puzzles.get(chooseRandomPuzzleIndex());
+  }
 
   private static final int _quitChoiceNumber = 4;
 
@@ -137,6 +147,9 @@ public class WheelOfFortune {
           break;
         case 1:
           System.out.println("You landed on: " + chooseRandomWedgeValue());
+          break;
+        case 7:
+          System.out.println("Puzzle: " + chooseRandomPuzzle());
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
