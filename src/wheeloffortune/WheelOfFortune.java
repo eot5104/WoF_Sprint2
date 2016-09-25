@@ -74,9 +74,9 @@ public class WheelOfFortune {
       "2. Buy a vowel",
       "3. Solve the puzzle",
       "4. Quit the game",
-      "", // 5
-      "", // 6
-      "", // 7
+      "", // 5 possibly used in the future
+      "", // 6 possibly used in the future
+      "", // 7 possibly used in the future
       "8. Toggle puzzle reveal",
       "9. Test letter input"
   );
