@@ -57,7 +57,7 @@ public class WheelOfFortune {
       "4. Quit the game",
       "", // 5
       "", // 6
-      "7. Test choose puzzle", // 7
+      "", // 7
       "", // 8
       "9. Test letter input"
   );
