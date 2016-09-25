@@ -1,5 +1,6 @@
 package wheeloffortune;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -70,6 +71,8 @@ public class WheelOfFortune {
 
   private static final int _puzzlesCount = _puzzles.size();
 
+  private static boolean[] guessedLetters = new boolean[26];
+
   private static String maskPuzzle(String puzzle) {
     StringBuilder maskedPuzzle = new StringBuilder();
     for (int i = 0; i < puzzle.length(); i++) {
@@ -126,6 +129,13 @@ public class WheelOfFortune {
     return letter;
   }
 
+  private static void debugGuessedLetters() {
+    for (int i = 0; i < guessedLetters.length; i++) {
+      System.out.print((char)('A' + i));
+      System.out.println(": " + guessedLetters[i]);
+    }
+  }
+
   private static void gameMenu() {
     int choice = 0;
     String line = "";
@@ -159,6 +169,10 @@ public class WheelOfFortune {
           break;
         case 1:
           System.out.println("You landed on: " + chooseRandomWedgeValue());
+          char letter = inputLetter();
+          System.out.println("Your letter is: " + letter);
+          guessedLetters[letter-'A'] = true;
+          debugGuessedLetters();
           break;
         case 7:
           String puzzle = chooseRandomPuzzle();
