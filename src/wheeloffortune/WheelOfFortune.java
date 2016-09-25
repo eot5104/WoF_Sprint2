@@ -60,12 +60,12 @@ public class WheelOfFortune {
   */
   private static final int _wedgeCount = _wedges.size();
 
-  private static int chooseRandomWedgeIndex() {
-    return _random.nextInt(_wedgeCount);
-  }
-
   private static String chooseRandomWedgeValue() {
-    return _wedges.get(chooseRandomWedgeIndex());
+    // Choose a random index
+    int randomWedgeIndex = _random.nextInt(_wedgeCount);
+
+    // Return the corresponding wedge
+    return _wedges.get(randomWedgeIndex);
   }
 
   // The menu choices
@@ -119,12 +119,12 @@ public class WheelOfFortune {
     return maskedPuzzle.toString();
   }
 
-  private static int chooseRandomPuzzleIndex() {
-    return _random.nextInt(_puzzlesCount);
-  }
-
   private static String chooseRandomPuzzle() {
-    return _puzzles.get(chooseRandomPuzzleIndex());
+    // Choose a random puzzle index
+    int randomPuzzleIndex = _random.nextInt(_puzzlesCount);
+
+    //Return the corresponding puzzle
+    return _puzzles.get(randomPuzzleIndex);
   }
 
   private static final int _quitChoiceNumber = 4;
