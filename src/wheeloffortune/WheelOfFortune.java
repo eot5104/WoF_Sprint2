@@ -57,7 +57,7 @@ public class WheelOfFortune {
       "4. Quit the game",
       "", // 5
       "", // 6
-      "7 Test random", // 7
+      "", // 7
       "", // 8
       "9. Test letter input"
   );
@@ -129,8 +129,8 @@ public class WheelOfFortune {
         case _quitChoiceNumber:
           quit = true;
           break;
-        case 7:
-          System.out.println(chooseRandomWedgeValue());
+        case 1:
+          System.out.println("You landed on: " + chooseRandomWedgeValue());
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
