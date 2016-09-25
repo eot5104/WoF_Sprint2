@@ -79,7 +79,8 @@ public class WheelOfFortune {
     StringBuilder maskedPuzzle = new StringBuilder();
     for (int i = 0; i < puzzle.length(); i++) {
       char c = puzzle.charAt(i);
-      if (c != ' ' && !guessedLetters.get(c)) {
+      boolean isLetterGuessed = guessedLetters.containsKey(c);
+      if (c != ' ' && !isLetterGuessed){
         c = '_';
       }
       maskedPuzzle.append(c + " ");
