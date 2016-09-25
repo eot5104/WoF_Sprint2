@@ -16,6 +16,7 @@ public class WheelOfFortune {
 
   private static final Scanner _keyboard = new Scanner(System.in);
   private static final Random _random = new Random();
+  private static boolean revealLetters = false;
 
   private static final List<String> _wedges = Arrays.asList(
       /* 01 */"$5000",
@@ -61,7 +62,7 @@ public class WheelOfFortune {
       "", // 5
       "", // 6
       "", // 7
-      "", // 8
+      "8. Toggle puzzle reveal",
       "9. Test letter input"
   );
 
@@ -79,7 +80,7 @@ public class WheelOfFortune {
     StringBuilder maskedPuzzle = new StringBuilder();
     for (int i = 0; i < puzzle.length(); i++) {
       char c = puzzle.charAt(i);
-      boolean isLetterGuessed = guessedLetters.containsKey(c);
+      boolean isLetterGuessed = revealLetters || guessedLetters.containsKey(c);
       if (c != ' ' && !isLetterGuessed){
         c = '_';
       }
@@ -187,6 +188,9 @@ public class WheelOfFortune {
           System.out.println("Your letter is: " + letter);
           guessedLetters.put(letter, true);
           debugGuessedLetters();
+          break;
+        case 8:
+          revealLetters = !revealLetters;
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
