@@ -122,7 +122,7 @@ public class WheelOfFortune {
       if (line.length() != 1) {
         System.out.println("Enter just one letter");
       } else {
-        letter = line.charAt(0);
+        letter = Character.toUpperCase(line.charAt(0));
         if (!Character.isLetter(letter)) {
           System.out.println("That is not a letter");
         } else {
