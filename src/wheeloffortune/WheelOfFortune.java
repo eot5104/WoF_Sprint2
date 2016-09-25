@@ -145,8 +145,16 @@ public class WheelOfFortune {
     String line = "";
     boolean quit = false;
 
+    String puzzle = chooseRandomPuzzle();
+
     while (!quit) {
-      System.out.println("\n===============================================================================");
+      System.out.println("                      ======================");
+      System.out.println("                      =  Wheel Of Fortune  =");
+      System.out.println("                      ======================");
+      System.out.println("                                            ");
+
+      System.out.println(maskPuzzle(puzzle));
+
       for (String menuChoice : _menuChoices) {
         if (!menuChoice.equals("")) {
           System.out.println(menuChoice);
@@ -179,9 +187,9 @@ public class WheelOfFortune {
           debugGuessedLetters();
           break;
         case 7:
-          String puzzle = chooseRandomPuzzle();
-          System.out.println("Puzzle: " + puzzle);
-          System.out.println("Mask: " + maskPuzzle(puzzle));
+          String puzzleTest = chooseRandomPuzzle();
+          System.out.println("Puzzle: " + puzzleTest);
+          System.out.println("Mask: " + maskPuzzle(puzzleTest));
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
