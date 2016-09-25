@@ -60,7 +60,7 @@ public class WheelOfFortune {
       "4. Quit the game",
       "", // 5
       "", // 6
-      "7. Test puzzle mask",
+      "", // 7
       "", // 8
       "9. Test letter input"
   );
@@ -187,11 +187,6 @@ public class WheelOfFortune {
           System.out.println("Your letter is: " + letter);
           guessedLetters.put(letter, true);
           debugGuessedLetters();
-          break;
-        case 7:
-          String puzzleTest = chooseRandomPuzzle();
-          System.out.println("Puzzle: " + puzzleTest);
-          System.out.println("Mask: " + maskPuzzle(puzzleTest));
           break;
         case 9:
           System.out.println("Your letter is: " + inputLetter());
