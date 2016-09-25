@@ -76,7 +76,7 @@ public class WheelOfFortune {
 
   private static Map<Character, Boolean> guessedLetters = new HashMap<>();
 
-  private static String maskPuzzle(String puzzle) {
+  private static String maskPuzzle(String puzzle, boolean revealLetters) {
     StringBuilder maskedPuzzle = new StringBuilder();
     for (int i = 0; i < puzzle.length(); i++) {
       char c = puzzle.charAt(i);
@@ -155,7 +155,7 @@ public class WheelOfFortune {
       System.out.println("                      ======================");
       System.out.println("                                            ");
 
-      System.out.println(maskPuzzle(puzzle));
+      System.out.println(maskPuzzle(puzzle, revealLetters));
       System.out.println();
 
       for (String menuChoice : _menuChoices) {
