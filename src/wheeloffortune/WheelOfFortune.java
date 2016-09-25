@@ -131,7 +131,7 @@ public class WheelOfFortune {
 
   // Determine if the given number choice actually appears on the menu
   private static boolean isValidMenuChoice(int choice) {
-    if (choice < 1 || choice > _menuChoices.size()) {
+    if ((choice < 1) || (choice > _menuChoices.size())) {
       return false;
     }
 
