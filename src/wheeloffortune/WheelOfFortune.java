@@ -80,6 +80,7 @@ public class WheelOfFortune {
       "8. Toggle puzzle reveal",
       "9. Test letter input"
   );
+  private static final int _quitChoiceNumber = 4;
 
   // The different puzzles to choose from
   private static final List<String> _puzzles = Arrays.asList(
@@ -105,20 +106,41 @@ public class WheelOfFortune {
   */
   private static Map<Character, Boolean> guessedLetters = new HashMap<>();
 
+  /*
+  * Given a puzzle, return a masked version, with hidden letters
+  */
   private static String maskPuzzle(String puzzle, boolean revealLetters) {
+    // Use a string builder, since Java strings are immutable
     StringBuilder maskedPuzzle = new StringBuilder();
+
+    // For each letter in the puzzle
     for (int i = 0; i < puzzle.length(); i++) {
+      // Current letter
       char c = puzzle.charAt(i);
+
+      /*
+      * Either we're revealing all letters, or we've already guessed the
+      * letter
+      */
       boolean isLetterGuessed = revealLetters || guessedLetters.containsKey(c);
+
+      /*
+      * If the letter is not blank (we don't mask blanks), and the letter
+      * has not been guessed, then we will mask it.
+      */
       if (c != ' ' && !isLetterGuessed){
         c = '_';
       }
+      
+      // Put one space after each character (even a space) in the puzzle
       maskedPuzzle.append(c + " ");
     }
 
+    // Convert the string builder to a string and return it
     return maskedPuzzle.toString();
   }
 
+  // Choose a random puzzle
   private static String chooseRandomPuzzle() {
     // Choose a random puzzle index
     int randomPuzzleIndex = _random.nextInt(_puzzlesCount);
@@ -126,8 +148,6 @@ public class WheelOfFortune {
     //Return the corresponding puzzle
     return _puzzles.get(randomPuzzleIndex);
   }
-
-  private static final int _quitChoiceNumber = 4;
 
   // Determine if the given number choice actually appears on the menu
   private static boolean isValidMenuChoice(int choice) {
