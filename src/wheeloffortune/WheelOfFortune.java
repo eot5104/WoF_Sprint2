@@ -1,3 +1,11 @@
+/*
+* CMPSC 261, Section 1
+* Fall 2016
+* Instructor: Phil O'Connell
+* Student: Elaine Tang
+* ID: eot5104
+*/
+
 package wheeloffortune;
 
 import java.util.ArrayList;
@@ -13,10 +21,13 @@ import java.util.Scanner;
  * @author Phil O'Connell <pxo4@psu.edu>
  */
 public class WheelOfFortune {
+  private static char letteruno; //declare variable letter
+  private static char letterdos;
+  private static char solvepuzzle;
 
   // To read from the keyboard
   private static final Scanner _keyboard = new Scanner(System.in);
-
+  private static int Win = 0;
   // Used to get random values for puzzle and wheel
   private static final Random _random = new Random();
 
@@ -63,7 +74,15 @@ public class WheelOfFortune {
   private static String chooseRandomWedgeValue() {
     // Choose a random index
     int randomWedgeIndex = _random.nextInt(_wedgeCount);
+  
 
+      if(_wedges.get(randomWedgeIndex) != "LOSE A TURN" && _wedges.get(randomWedgeIndex) != "BANKRUPT"){
+        Win += Integer.parseInt(_wedges.get(randomWedgeIndex).replace("$", ""));
+    }
+    else if (_wedges.get(randomWedgeIndex) == "BANKRUPT")
+    {
+        Win = 0;
+    }
     // Return the corresponding wedge
     return _wedges.get(randomWedgeIndex);
   }
@@ -73,20 +92,15 @@ public class WheelOfFortune {
       "1. Spin the wheel",
       "2. Buy a vowel",
       "3. Solve the puzzle",
-      "4. Quit the game",
-      "", // 5 possibly used in the future
-      "", // 6 possibly used in the future
-      "", // 7 possibly used in the future
-      "8. Toggle puzzle reveal",
-      "9. Test letter input"
-  );
+      "4. Quit the game"
+       );
   private static final int _quitChoiceNumber = 4;
 
   // The different puzzles to choose from
   private static final List<String> _puzzles = Arrays.asList(
-      "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
-      "PENN STATE ABINGTON",
-      "INFORMATION SCIENCES AND TECHNOLOGY"
+      "THIS JAWN IS LIT",
+      "PLAY THIS GAME PLEASE",
+      "JUSTICE FOR HARAMBE"
   );
 
   /*
@@ -117,7 +131,8 @@ public class WheelOfFortune {
     for (int i = 0; i < puzzle.length(); i++) {
       // Current letter
       char c = puzzle.charAt(i);
-
+      
+    
       /*
       * Either we're revealing all letters, or we've already guessed the
       * letter
@@ -164,7 +179,8 @@ public class WheelOfFortune {
 
   // Input a letter from the keyboard
   private static char inputLetter() {
-    char letter = ' ';
+    char letter = ' ';    
+       
     boolean finished = false;
 
     while (!finished) {
@@ -192,7 +208,8 @@ public class WheelOfFortune {
   private static void gameMenu() {
     // Choice from the menu
     int choice = 0;
-
+    
+                                
     // Line entered from keyboard
     String line = "";
 
@@ -204,13 +221,15 @@ public class WheelOfFortune {
 
     // Repeat the menu until the user chooses to quit
     while (!quit) {
-      System.out.println("                      ======================");
-      System.out.println("                      =  Wheel Of Fortune  =");
-      System.out.println("                      ======================");
-      System.out.println("                                            ");
+      System.out.println("\n                      ======================");
+      System.out.println("\n                      =  Wheel Of Fortune  =");
+      System.out.println("\n                      ======================");
+      System.out.println("\n                                            ");
 
       System.out.println(maskPuzzle(puzzle, revealLetters));
       System.out.println();
+      System.out.println("You Won: $" + Win);
+      
 
       // Loop over the menu choices, and display each one
       for (String menuChoice : _menuChoices) {
@@ -245,18 +264,46 @@ public class WheelOfFortune {
 
         case 1: // Spin the wheel
           System.out.println("You landed on: " + chooseRandomWedgeValue());
-          char letter = inputLetter();
-          System.out.println("Your letter is: " + letter);
-          guessedLetters.put(letter, true);
+          letteruno = inputLetter();
+          
+          if(letteruno =='a' || letteruno =='A' || letteruno == 'e' || letteruno == 'E' || 
+             letteruno =='i' || letteruno =='I' || letteruno =='o' || letteruno == 'O' || 
+             letteruno =='u' || letteruno =='U') //display vowels 
+          {
+              System.out.print("This is a vowel \n");
+                     
+          }
+          else 
+          {
+              System.out.print("This is not a Vowel");
+              guessedLetters.put(letteruno, true);
+          }
+          
+          System.out.println("\nYour letter is: " + letteruno);
+          
           break;
-
-        case 8: // Toggle reveal letters
-          revealLetters = !revealLetters;
+        case 2: //buy vowel
+            letterdos = inputLetter();
+          
+          if(letterdos =='a' || letterdos =='A' || letterdos == 'e' || letterdos == 'E' ||
+             letterdos =='i' || letterdos =='I' || letterdos =='o' || letterdos == 'O' || 
+             letterdos =='u' || letterdos =='U')
+          {
+              
+              if (Win >= 250) //allows only vowels to be purchased 
+              {
+                  System.out.print("You bought vowel: \n" + letterdos);//lets users know they bought a vowel
+                  Win = Win-250;//subtracts $250 when a vowel is bought
+              }
+              guessedLetters.put(letterdos,true); //lets users know that the letter they chose is a vowel
+          }
+          else
+          {
+              System.out.print("You can only buy vowels");//lets users know that you can only BUY vowels
+          }
           break;
-
-        case 9: // Test to read in a letter from the keyboard
-          System.out.println("Your letter is: " + inputLetter());
-          break;
+   
+    
       }
     }
   }
